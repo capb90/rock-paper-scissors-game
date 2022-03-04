@@ -1,7 +1,6 @@
 # WEBPACK INITIAL CONFIGS
 
-Initial configuration of webpack for any JavaScript project that works with this technology.
-
+Game to explain the basics of javaScript and webpack 
 ## Notes
 
 When downloading or cloning the repository run the following commands in your console.
