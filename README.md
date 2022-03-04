@@ -1,4 +1,4 @@
-# WEBPACK INITIAL CONFIGS
+# ROCK PAPER SCISSORS GAME
 
 Game to explain the basics of javaScript and webpack 
 ## Notes
