@@ -1,7 +1,61 @@
 body{
+    margin: 10px;
+    background-image: url('assets/images/fondo.jpg');
     background-color: #ccc;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-img{
+.titulo{
+   text-align: center;
+   color: greenyellow;
+}
+
+hr{
+    color: greenyellow;
+    border-top: 5px solid greenyellow;
+}
+
+.marcador{
+    text-align: center;
+    font-size: 90px;
+    color: greenyellow;
+}
+
+.img-button{
+    width: 90px;
+}
+
+.button-selection{
+    background-color: #FFFC00;
+    border: 4px solid black;
+    margin-left: 2px;
+}
+
+.buttons-layout{
+    display:flex;
+    justify-content: center;
+}
+
+.card{
+    background-color: #FFFC00;
+    color: black;
+}
+
+.btn-select:hover{
+    background-color: #ADAB00;
+}
+
+.btn-danger{
     width: 150px;
+    height: 50px;
+    font-size: 15pt;
+    font-style: italic;
+}
+
+.card-body{
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

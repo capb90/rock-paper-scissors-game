@@ -26,7 +26,7 @@ module.exports = {
         use: [MiniCssExtract.loader, "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpg?e|gif)$/i,
         loader: "file-loader",
       },
     ],
@@ -35,7 +35,7 @@ module.exports = {
   plugins: [
     new HtmlWebPack({
       title: "WebPack app",
-      filename: "index.html",
+      // filename: "index.html",
       template: "./src/index.html",
     }),
     new MiniCssExtract({

@@ -30,7 +30,7 @@ module.exports = {
         use: [MiniCssExtract.loader, "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpg?e|gif)$/i,
         loader: "file-loader",
       },
       {
