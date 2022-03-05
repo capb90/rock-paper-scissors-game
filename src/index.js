@@ -5,9 +5,6 @@ import {
   setNamePlayerOne,
   setImagesHtml,
   setPointsPlayer,
-  addPoints,
-  pointsPlayer,
-  pointsComputer
 } from "./js/helpers";
 
 /**
@@ -25,8 +22,17 @@ const body = document.querySelector("body"),
  *
  */
 const opcionsComputer = ["paper", "rock", "scissors"];
-let turnos = 0;
 let nombreInicialJugador = "Jugador 1";
+let maxShift      =0;
+let pointsPlayer  =0;
+let pointsComputer=0;
+
+
+const resetValues = () =>{
+  maxShift      =0;
+  pointsPlayer  =0;
+  pointsComputer=0;
+}
 
 const setJuego = () => {
   setButtonsDisabled(buttonsSelectOpcions, true);
@@ -34,20 +40,20 @@ const setJuego = () => {
   initializeHtml(
     markersGameHtml,
     divsImgHtml,
-    turnos
-  );
+    maxShift,
+ );
   buttonInitHtml.disabled = false;
   nombreInicialJugador = "";
 };
 
 const initGame = (nombreJugador = "Jugador 1", reiniciar = false) => {
-  const namePlayer = reiniciar ? nombreJugador : prompt("Ingrese su nombre:");
-  setNamePlayerOne(namePlayerHtml, namePlayer ? namePlayer : "Jugador 1");
+  nombreInicialJugador = reiniciar ? nombreJugador : prompt("Ingrese su nombre:");
+  setNamePlayerOne(namePlayerHtml, nombreInicialJugador ? nombreInicialJugador : "Jugador 1");
   setButtonsDisabled(buttonsSelectOpcions, false);
   initializeHtml(
     markersGameHtml,
     divsImgHtml,
-    turnos
+    maxShift,
   );
   buttonInitHtml.disabled = true;
 };
@@ -59,14 +65,28 @@ const setOpcionComputer = (Opcjugador, turno) => {
     computador = opcionsComputer[index];
   setImagesHtml(computador, divsImgHtml[1]);
   setButtonsDisabled(buttonsSelectOpcions, false);
-  const addPointsOpcion = setPointsPlayer([Opcjugador, computador]);
-  addPoints(addPointsOpcion,markersGameHtml);
+  addPoints(setPointsPlayer([Opcjugador, computador]),markersGameHtml);
   if (turno === 3) {
+    setButtonsDisabled(buttonsSelectOpcions, true);
     setTimeout(() => {
       determinarGanador(pointsPlayer, pointsComputer);
     }, 800);
   }
 };
+
+const addPoints = (number,markersGameHtml) => {
+  switch (number) {
+    case 0: 
+        pointsPlayer+=1;
+        markersGameHtml[0].innerText = pointsPlayer;
+        break;
+    case 1: 
+        pointsComputer+=1;
+        markersGameHtml[1].innerText = pointsComputer;
+        break;
+  }
+};
+
 
 const turnoComputador = (jugador, turno) => {
   setButtonsDisabled(buttonsSelectOpcions, true);
@@ -83,6 +103,7 @@ const determinarGanador = (pointsPlayer, pointsComputer) => {
     ? alert("Empate")
     : alert("Perdiste!!!");
 
+  resetValues();
   setTimeout(() => {
     confirm("Quieres intentarlo nuevamente")
       ? initGame(nombreInicialJugador, true)
@@ -92,8 +113,8 @@ const determinarGanador = (pointsPlayer, pointsComputer) => {
 
 const btnClick = (opcion, div) => {
   setImagesHtml(opcion, div);
-  turnos++;
-  turnoComputador(opcion, turnos);
+  maxShift++;
+  turnoComputador(opcion, maxShift);
 };
 
 buttonsSelectOpcions[0].addEventListener("click", () => {

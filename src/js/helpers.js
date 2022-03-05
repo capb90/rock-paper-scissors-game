@@ -1,7 +1,3 @@
-export let pointsPlayer = 0;
-export let pointsComputer = 0;
-
-
 export const setButtonsDisabled = (buttonsSelectOpcions, value) => {
   buttonsSelectOpcions.forEach((b) => (b.disabled = value));
 };
@@ -9,9 +5,6 @@ export const setButtonsDisabled = (buttonsSelectOpcions, value) => {
 export const initializeHtml = (markersGameHtml, divsImgHtml, ...args) => {
   markersGameHtml.forEach((s) => (s.innerHTML = 0));
   divsImgHtml.forEach((d) => (d.innerHTML = ""));
-  args.forEach((p) => (p = 0));
-  pointsPlayer = 0
-  pointsComputer = 0
 };
 
 export const setNamePlayerOne = (namePlayerHtml, namePlayer = "Jugador 1") => {
@@ -44,22 +37,6 @@ export const setPointsPlayer = (selections) => {
 
   return 2;
 };
-
-export const addPoints = (number,markersGameHtml) => {
-  switch (number) {
-    case 0: 
-        setPointsHtml(pointsPlayer,markersGameHtml[0])
-        break;
-    case 1: 
-        setPointsHtml(pointsComputer,markersGameHtml[1])
-        break;
-  }
-};
-
-const setPointsHtml = (player,elementHtml) => {
-    player = player + 1;
-    elementHtml.innerText = player;
-}
 
 
 
