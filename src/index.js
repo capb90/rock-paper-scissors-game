@@ -40,7 +40,6 @@ const setJuego = () => {
   initializeHtml(
     markersGameHtml,
     divsImgHtml,
-    maxShift,
  );
   buttonInitHtml.disabled = false;
   nombreInicialJugador = "";
@@ -53,7 +52,6 @@ const initGame = (nombreJugador = "Jugador 1", reiniciar = false) => {
   initializeHtml(
     markersGameHtml,
     divsImgHtml,
-    maxShift,
   );
   buttonInitHtml.disabled = true;
 };
