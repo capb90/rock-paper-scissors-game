@@ -38,6 +38,13 @@ export const setPointsPlayer = (selections) => {
   return 2;
 };
 
+export const selectOpcionComputer = ()=>{
+  const opcionsComputer = ["paper", "rock", "scissors"];
+  return opcionsComputer[generateRandomNumber(3,0)];
+}
 
+const generateRandomNumber = (max,min)=>{
+  return Math.floor(Math.random() * (max - min)) + min
+}
 
 

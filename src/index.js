@@ -5,6 +5,7 @@ import {
   setNamePlayerOne,
   setImagesHtml,
   setPointsPlayer,
+  selectOpcionComputer,
 } from "./js/helpers";
 
 /**
@@ -19,51 +20,46 @@ const body = document.querySelector("body"),
 
 /**
  * Variables globales
- *
  */
-const opcionsComputer = ["paper", "rock", "scissors"];
 let nombreInicialJugador = "Jugador 1";
-let maxShift      =0;
-let pointsPlayer  =0;
-let pointsComputer=0;
+let maxShift = 0;
+let pointsPlayer = 0;
+let pointsComputer = 0;
 
-
-const resetValues = () =>{
-  maxShift      =0;
-  pointsPlayer  =0;
-  pointsComputer=0;
-}
+const resetValues = () => {
+  maxShift = 0;
+  pointsPlayer = 0;
+  pointsComputer = 0;
+};
 
 const setJuego = () => {
   setButtonsDisabled(buttonsSelectOpcions, true);
   setNamePlayerOne(namePlayerHtml);
-  initializeHtml(
-    markersGameHtml,
-    divsImgHtml,
- );
+  initializeHtml(markersGameHtml, divsImgHtml);
   buttonInitHtml.disabled = false;
   nombreInicialJugador = "";
 };
 
 const initGame = (nombreJugador = "Jugador 1", reiniciar = false) => {
-  nombreInicialJugador = reiniciar ? nombreJugador : prompt("Ingrese su nombre:");
-  setNamePlayerOne(namePlayerHtml, nombreInicialJugador ? nombreInicialJugador : "Jugador 1");
-  setButtonsDisabled(buttonsSelectOpcions, false);
-  initializeHtml(
-    markersGameHtml,
-    divsImgHtml,
+  nombreInicialJugador = reiniciar
+    ? nombreJugador
+    : prompt("Ingrese su nombre:");
+  setNamePlayerOne(
+    namePlayerHtml,
+    nombreInicialJugador ? nombreInicialJugador : "Jugador 1"
   );
+  setButtonsDisabled(buttonsSelectOpcions, false);
+  initializeHtml(markersGameHtml, divsImgHtml);
   buttonInitHtml.disabled = true;
 };
 
 buttonInitHtml.addEventListener("click", initGame);
 
 const setOpcionComputer = (Opcjugador, turno) => {
-  const index = Math.floor(Math.random() * (3 - 0)) + 0,
-    computador = opcionsComputer[index];
-  setImagesHtml(computador, divsImgHtml[1]);
+  const selectComputer = selectOpcionComputer();
+  setImagesHtml(selectComputer, divsImgHtml[1]);
   setButtonsDisabled(buttonsSelectOpcions, false);
-  addPoints(setPointsPlayer([Opcjugador, computador]),markersGameHtml);
+  addPoints(setPointsPlayer([Opcjugador, selectComputer]), markersGameHtml);
   if (turno === 3) {
     setButtonsDisabled(buttonsSelectOpcions, true);
     setTimeout(() => {
@@ -72,19 +68,18 @@ const setOpcionComputer = (Opcjugador, turno) => {
   }
 };
 
-const addPoints = (number,markersGameHtml) => {
+const addPoints = (number, markersGameHtml) => {
   switch (number) {
-    case 0: 
-        pointsPlayer+=1;
-        markersGameHtml[0].innerText = pointsPlayer;
-        break;
-    case 1: 
-        pointsComputer+=1;
-        markersGameHtml[1].innerText = pointsComputer;
-        break;
+    case 0:
+      pointsPlayer += 1;
+      markersGameHtml[0].innerText = pointsPlayer;
+      break;
+    case 1:
+      pointsComputer += 1;
+      markersGameHtml[1].innerText = pointsComputer;
+      break;
   }
 };
-
 
 const turnoComputador = (jugador, turno) => {
   setButtonsDisabled(buttonsSelectOpcions, true);
